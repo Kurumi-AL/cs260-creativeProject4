@@ -91,8 +91,8 @@ export default {
       try {
         const formData = new FormData();
         formData.append('photo', this.file, this.file.name);
-        let r1 = await axios.post('http://localhost:3000/api/photos', formData);
-        let r2 = await axios.post('http://localhost:3000/api/diaries', {
+        let r1 = await axios.post(process.env.VUE_APP_API_ENDPOINT + '/photos', formData);
+        let r2 = await axios.post(process.env.VUE_APP_API_ENDPOINT + '/diaries', {
           title: this.title,
           path: r1.data.path,
           description: this.description
@@ -104,7 +104,7 @@ export default {
     },
     async getItems() {
       try {
-        let response = await axios.get("http://localhost:3000/api/diaries");
+        let response = await axios.get(process.env.VUE_APP_API_ENDPOINT + "/diaries");
         this.items = response.data;
         return true;
       } catch (error) {
@@ -117,7 +117,7 @@ export default {
     },
     async deleteItem(item) {
       try {
-        await axios.delete("http://localhost:3000/api/diaries/" + item._id);
+        await axios.delete(process.env.VUE_APP_API_ENDPOINT + "/diaries/" + item._id);
         this.findItem = null;
         this.getItems();
         return true;
@@ -127,7 +127,7 @@ export default {
     },
     async editItem(item) {
       try {
-        let response = await axios.put("http://localhost:3000/api/diaries/" + item._id, item);
+        let response = await axios.put(process.env.VUE_APP_API_ENDPOINT + "/diaries/" + item._id, item);
         this.item = response.data;
         this.getItems();
         return true;

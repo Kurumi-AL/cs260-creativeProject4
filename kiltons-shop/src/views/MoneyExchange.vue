@@ -32,7 +32,7 @@ export default {
   methods: {
     async getExchangeRates() {
       try {
-        let response = await axios.get('http://localhost:3000/api/exchange-rates');
+        let response = await axios.get(process.env.VUE_APP_API_ENDPOINT + '/exchange-rates');
         return response.data;
       } catch (error) {
         console.log(error);

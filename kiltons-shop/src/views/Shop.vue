@@ -30,7 +30,7 @@ export default {
   methods: {
     async getItems() {
       try {
-        let response = await axios.get('http://localhost:3000/api/items');
+        let response = await axios.get(process.env.VUE_APP_API_ENDPOINT + '/items');
         return response.data;
       } catch (error) {
         console.log(error);

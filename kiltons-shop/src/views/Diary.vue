@@ -31,7 +31,7 @@ export default {
   methods: {
     async getItems() {
       try {
-        let response = await axios.get('http://localhost:3000/api/diaries');
+        let response = await axios.get(process.env.VUE_APP_API_ENDPOINT + '/diaries');
         this.items = response.data;
         return true;
       } catch (error) {
